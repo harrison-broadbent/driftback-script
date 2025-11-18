@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Driftback Widget Dev</title>
+    <script
+      type="module"
+      src="/src/main.js"
+      data-driftback-project-id="pr_aa4f32c31c49c1"
+      data-driftback-email="dev@example.com"
+      data-driftback-metadata-example-value="test"
+    ></script>
+    <script src="https://unpkg.com/htmx.org@2.0.8"></script>
+    <script>
+      // allow cross-origin requests in dev (5173 -> 3000) with htmx 2.x
+      if (window.htmx) {
+        htmx.config.selfRequestsOnly = false;
+      }
+    </script>
+  </head>
+
+  <body class="mx-auto my-24 max-w-5xl">
+    <h1 class="font-semibold text-2xl">Driftback Widget (dev)</h1>
+
+    <div class="">
+      <div>
+        <form
+          id="eventForm"
+          hx-post="http://localhost:3000/api/v1/events"
+          hx-target="#eventResponseJson"
+          hx-swap="innerHTML"
+          hx-vals='{
+						"project_id": "pr_aa4f32c31c49c1",
+						"email": "dev@example.com"
+					}'
+        >
+          <input
+            id="eventName"
+            type="text"
+            name="event"
+            placeholder="event_name"
+          />
+          <button id="eventTrigger" type="submit">Trigger event</button>
+        </form>
+
+        <pre id="eventResponseJson"></pre>
+      </div>
+
+      <!-- HTMX will dump the JSON response here -->
+      <pre id="eventResponseJson"></pre>
+    </div>
+    <div class="mt-12">
+      <button data-driftback-widget>Feedback widget</button>
+    </div>
+  </body>
+</html>
