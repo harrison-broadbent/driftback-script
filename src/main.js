@@ -89,6 +89,20 @@ function renderSurveyIframe(projectId, surveyId, email, metadata) {
     borderRadius: "16px",
   });
 
+  const iframe = document.createElement("iframe");
+  iframe.title = "Survey";
+  iframe.src = buildEmbedUrl(projectId, surveyId, email, metadata);
+  iframe.width = String(DEFAULT_IFRAME_WIDTH);
+  iframe.height = String(DEFAULT_IFRAME_HEIGHT);
+  iframe.allow = "clipboard-write;";
+  // iframe.referrerPolicy = "unsafe-url";
+  Object.assign(iframe.style, {
+    border: "none",
+    width: "100%",
+    height: "100%",
+    display: "block",
+  });
+
   const close = document.createElement("button");
   close.type = "button";
   close.setAttribute("aria-label", "Dismiss survey");
@@ -112,19 +126,7 @@ function renderSurveyIframe(projectId, surveyId, email, metadata) {
     setTimeout(() => root.remove(), 150); // wait a little for backend to receive the remove message
   }, { passive: true });
 
-  const iframe = document.createElement("iframe");
-  iframe.title = "Survey";
-  iframe.src = buildEmbedUrl(projectId, surveyId, email, metadata);
-  iframe.width = String(DEFAULT_IFRAME_WIDTH);
-  iframe.height = String(DEFAULT_IFRAME_HEIGHT);
-  iframe.allow = "clipboard-write;";
-  // iframe.referrerPolicy = "unsafe-url";
-  Object.assign(iframe.style, {
-    border: "none",
-    width: "100%",
-    height: "100%",
-    display: "block",
-  });
+
 
   root.appendChild(iframe);
   root.appendChild(close);
