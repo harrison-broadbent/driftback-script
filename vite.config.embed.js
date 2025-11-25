@@ -1,11 +1,15 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
+	define: {
+		__DRIFTBACK_ORIGIN__: JSON.stringify("https://driftback.app"),
+	},
 	build: {
 		// embed loader entry
 		lib: {
 			entry: "src/main.js",
-			formats: ["es"],
+			name: "Driftback",            			// only used for IIFE format
+			formats: ["iife"],                  // single self-executing bundle. Better for CORS
 			fileName: () => "db.js",
 		},
 

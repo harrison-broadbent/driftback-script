@@ -1,7 +1,4 @@
-const PRODUCTION_ORIGIN = "https://driftback.app";
-const DEVELOPMENT_ORIGIN = "http://localhost:3000";
-
-export const DRIFTBACK_ORIGIN = (typeof window !== "undefined" && window.location.hostname === "localhost") ? DEVELOPMENT_ORIGIN : PRODUCTION_ORIGIN;
+export const DRIFTBACK_ORIGIN = __DRIFTBACK_ORIGIN__;
 export const API_SURVEYS_PATH = "/api/v1/surveys";
 export const DEFAULT_IFRAME_WIDTH = 360;
 export const DEFAULT_IFRAME_HEIGHT = 0;

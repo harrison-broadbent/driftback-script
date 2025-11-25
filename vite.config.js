@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite'
 // - Dev server serves index.html with HMR.
 // - Build emits a library in ESM + UMD so publishers can <script src=...>.
 export default defineConfig({
+	define: {
+		__DRIFTBACK_ORIGIN__: JSON.stringify("http://localhost:3001"),
+	},
 	plugins: [tailwindcss()],
 	server: { open: true },
 	build: {

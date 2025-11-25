@@ -135,6 +135,15 @@ function renderSurveyIframe(projectId, surveyId, email, metadata) {
   installResizeBridge(root, iframe);
 }
 
+function checkURLChange() {
+  if (location.href !== oldURL) {
+    oldURL = location.href;
+    mount().catch(() => { });
+  }
+
+  setTimeout(checkURLChange, 2000);
+}
+
 export async function mount() {
   const { projectId, email, metadata } = getParamsFromCurrentScript();
   if (!projectId) return; console.log(">>> projectId: ", projectId)
@@ -149,5 +158,13 @@ if (typeof window !== "undefined") {
   window.DriftbackSurvey = Object.assign(window.DriftbackSurvey || {}, { mount });
 }
 
+
+
+
+
+let oldURL = location.href;
+
 mount();
+checkURLChange();
 console.log("mounted")
+
